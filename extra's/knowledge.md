@@ -10,7 +10,7 @@ Description: work in progress. Come back later
 
 In order to have a custom lvl like 420 all you have to do is add a new row in card_exps set lvl to desired lvl and set exp_type (to a random number above 999 or 4 trillion or a negative number) set exp_total to any number below 0 go to cards and set   exp_type to the number you set it to in card_exps table and set training_exp to the number you set it to in card_exps.exp_total and set lvl_max to the lvl amount you set it to in card_exps
 
-<sub>by BunRum</sub>
+<sub>by [BunRum](https://twitter.com/BunRum)</sub>
 
 ------------------------
 ## **Copy an existing Super Attack**
