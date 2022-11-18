@@ -63,34 +63,42 @@ And done! The Id in the row of **special\_views** will be used as a view id in t
 |STR |3      |13   |23     |
 |PHY |4      |14   |24     |
 
-#### Type Bitsets
-|     Type      |    Value   |
-|:-------------:|------------|
-|  AGL          |  1         |
-|  TEQ          |  2         |
-|  INT          |  4         |
-|  STR          |  8         |
-|  PHY          |  16        |
-|  Super        |  32        |
-|  Extreme      |  64        |
-|  Unknown      |  128       |
-|  Unknown      |  256       |
-|  Unknown      |  512       |
-|  Unknown      |  1024      |
-|  Unknown      |  2048      |                  
-|  Super AGL    |  4096      |
-|  Super TEQ    |  8192      |
-|  Super INT    |  16384     |
-|  Super STR    |  32768     |
-|  Super PHY    |  65536     |
-|  Extreme AGL  |  131072    |
-|  Extreme TEQ  |  262144    |
-|  Extreme INT  |  524288    |
-|  Extreme STR  |  1048576   |
-|  Extreme PHY  |  2097512   |
-|  Unknown      |  4194304   |
-|  Unknown      |  8388608   |
-|  Unknown      |  16777216  |
+
+
+------------------------
+## **Type Bitsets**
+
+
+
+|----|-----|
+|AGL |1    |
+|TEQ |2    |
+|INT |4    |
+|STR |8    |
+|PHY |16   |
+|Super |32 |
+|Extreme |64 |
+|Unknown |128 |
+|Unknown |256 |
+|Unknown |512 |
+|Unknown |1024 |
+|Unknown |2048 |                  
+|Super AGL |4096 |
+|Super TEQ |8192 |
+|Super INT |16384 |
+|Super STR |32768 |
+|Super PHY |65536 |
+|Extreme AGL |131072  |
+|Extreme TEQ |262144  |
+|Extreme INT |524288  |
+|Extreme STR |1048576 |
+|Extreme PHY |2097512 |
+|Unknown |  4194304   |
+|Unknown |  8388608   |
+|Unknown |  16777216  |
+
+
+
 
 
 ------------------------
