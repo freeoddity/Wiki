@@ -1,7 +1,8 @@
 ---
-title: Custom Audio Files
+title: Custom Audio Files - Legacy
 Sort: 3
-nav_order: 6
+permalink: /custom-audio-legacy/
+nav_order: 7
 ---
 [**Thanks to T6 for allowing me to reuse the UD wiki!**](https://twitter.com/ThievingSix) 
 
@@ -12,7 +13,7 @@ nav_order: 6
 ## **Required Tools**
 * [ADX Frontend](https://gamebanana.com/tools/6334)
 * [AWB Unpacker/Repacker](https://steamcommunity.com/sharedfiles/filedetails/?id=632355452)
-* [Degod](https://cdn.discordapp.com/attachments/530513147468054533/701700935264632842/degod.exe)
+* [Degod](https://cdn.discordapp.com/attachments/1166527102837866506/1166527168940093541/degod.exe?ex=654ad016&is=65385b16&hm=f726965d577b7021d87098a87375be340eab34a4ebf491d377f8dbd1c9175e7d&)
 * [SonicAudioTools (ACB)](https://github.com/blueskythlikesclouds/SonicAudioTools)
 <br /><br />
 
