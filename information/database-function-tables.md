@@ -7,8 +7,6 @@ nav_order: 5
 
 [**Be sure to check out his new Dokkan Wiki**](https://dokkan.wiki/)
 
-Thanks to the goats [**Goheezy**](https://twitter.com/GoheezyDokkan), [**Merged**](https://twitter.com/UDMerged), [**Luke**](https://twitter.com/LukeNienteData), and [**Ener**](https://twitter.com/_Energizz)
-
 #### Causality Types
 `skill_causalities` table
 
@@ -61,8 +59,22 @@ Thanks to the goats [**Goheezy**](https://twitter.com/GoheezyDokkan), [**Merged*
 | 43 | isDodgeSuccess | Activates if card has evaded an attack | Unknown | Unknown | Unknown |
 | 44 | isCountUp | Unknown | Unknown | Unknown | Unknown |
 | 45 | isContainsCardByCategoryAndUniqueInfo | Activates if card is in target, category and unique info relations | Target (team, turn, enemy...) | Category (id, not sub target) | card\_unique\_info\_set\_relations |
-
-
+| 46 | isContainsSpecifiedElemenets | Activates if card is in specified element type bitset| Unknown | Unknown | Unknown |
+| 47 | isExecutedRevivalSkill | Activates if card has executed a revival skill | | | |
+| 48 | isAttackedByEnemyWhichTakeSpecialDamage | Special Bitset| | | |
+| 49 | isAttackedBySpecialCategory|  | Unknown | Unknown | Unknown |
+| 50 | hasPlayedPassiveSkillEffect| | Unknown | Unknown | Unknown |
+| 51 | isUnderTurnCountFromApperance|  | Unknown | Unknown | Unknown |
+| 52 | chargeCount|  | Unknown | Unknown | Unknown |
+| 53 | inStandbyMode|  | Unknown | Unknown | Unknown |
+| 54 | isPartyExecutedRevivalSkill| Activates if card in your party has executed a revival skill | | | |
+| 55 | isOverTurnCountFromApperance | Activates if card is x turns after first apperance| turn count | Unknown | Unknown |
+| 56 | isNormalAttack | Activates if attack recieved is a normal attack | Unknown | Unknown | Unknown |
+| 57 | isInSpecifiedDokkanField | Activates if card is in a specified dokkan field | dokkan_field.id| Unknown | Unknown |
+| 58 | isInDokkanField | Activates if card is in a dokkan field| Unknown | Unknown | Unknown |
+| 59 | isSameAwakeningElementType |Activates if a card in a class| Super Class = 1 Extreme Class = 2 | Unknown | Unknown |
+| 60 | isInSubTargetTypeSet | Activates if card is in a sub target type set| SubTargetTypeSet id | Unknown | Unknown |
+| 61 | isReceivedAttackDuringTurn | Activates if card has recieved attack during turn| Unknown | Unknown | Unknown |
 
 <br />
 
@@ -202,9 +214,21 @@ Applies to all skills tables & `support_items`
 | 102| Change Metamorphic Probability Count Limit                                                                                |                                            |                                   |                                                                                                                                                                     |
 | 103| Transformation                                                                                                            | Transform Card Id                          | Turn Requirement                  | Links to battle_params param_no                                                                                                                                     |
 | 104| Change HP Atk Def                                                                                                         | HP Value                                   | ATK Value                         | DEF Value                                                                                                                                                           |     
+| 105| Replace Energy Ball                                                                                                       | Energy Ball Bitset                         | Unknown                           | Unknown                                                                                                                                                             |
+| 106| Potential Heal                                                                                                            | Unknown                                    | Unknown                           | Unknown                                                                                                                                                             |
+| 107| Change Condition Stackable Delay                                                                                          | Delay turn count                           | 0                                 | 0                                                                                                                                                                   |
+| 108| Add Potential Skill Variable Parameter                                                                                    | Unknown                                    | Unknown                           | Unknown                                                                                                                                                             |
 | 109| Revival Skill                                                                                                             | HP% to heal                                | effect_pack Row                   | BGM ID                                                                                                                                                              |
-| 110| Passive Reset?                                                                                                            | Insert 2                                   | Passive Skill id                  | 0                                                                                                                                                                   |
-| 111| Disable Action                                                                                                            | 0 (use probability for chance)             | 0                                 | 0                                                                                                                                                                   |
+| 110| Remove Ability Efficacy Info And Inactive Ability Status                                                                  | Insert 2                                   | skill id                          | 0                                                                                                                                                                   |
+| 111| Change Condition Attack Break                                                                                             | 0 (use probability for chance)             | 0                                 | 0                                                                                                                                                                   |
+| 112| Change Invalidate Attack Break                                                                                            |                                            |                                   |                                                                                                                                                                     |
+| 113| Threshold Damage                                                                                                          |                                            |                                   |                                                                                                                                                                     |
+| 115| Update Standby Mode                                                                                                       |                                            |                                   |                                                                                                                                                                     |
+| 116| Charge Start                                                                                                              |                                            |                                   |                                                                                                                                                                     |
+| 117| End Transformation                                                                                                        |                                            |                                   |                                                                                                                                                                     |
+| 118| Add Special Atk Rate By Charge Count                                                                                      |                                            |                                   |                                                                                                                                                                     |
+| 119| Counter Attack Behaviour                                                                                                  |                                            |                                   |                                                                                                                                                                     |
+| 120| Increased Receved Damage                                                                                                  |                                            |                                   |                                                                                                                                                                     |
 
 
 <br /><br />
@@ -306,6 +330,40 @@ Applies to all skills tables & `support_items`
 |  Unknown      |  16777216  |
 
 
+<br /><br />
+
+#### Energy Ball Bitsets
+
+
+
+|     Type      |    Value   |
+|:-------------:|------------|
+|  AGL          |  1         |
+|  TEQ          |  2         |
+|  INT          |  4         |
+|  STR          |  8         |
+|  PHY          |  16        |
+|  Unknown      |  32        |
+|  Unknown      |  64        |
+|  Unknown      |  128       |
+|  Unknown      |  256       |
+|  Candies      |  448       |
+|  Unknown      |  512       |
+|  Unknown      |  1024      |
+|  Unknown      |  2048      |                  
+|  Carrot       |  4096      |
+|  Unknown      |  8192      |
+|  Unknown      |  16384     |
+|  Unknown      |  32768     |
+|  Unknown      |  65536     |
+|  Unknown      |  131072    |
+|  Unknown      |  262144    |
+|  Unknown      |  524288    |
+|  Unknown      |  1048576   |
+|  Unknown      |  2097512   |
+|  Unknown      |  4194304   |
+|  Unknown      |  8388608   |
+|  Unknown      |  16777216  |
 
 <br /><br />
 

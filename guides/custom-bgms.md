@@ -26,7 +26,7 @@ Those steps are the following:
 
 * Encode your wav into a adx file. We will be using Radx to accomplish this.
 
-* Encrypt your adx using degod. We will use the 9 key settings to encrypt our adx.
+* Encrypt your adx using degod. We will use the 9th key setting to encrypt our adx.
 
 * Package your adx file into a awb file. An awb file is simply a container used to hold other files.
 
@@ -77,7 +77,7 @@ Finally you may simply drag and drop your encrypted adx file into AWB_repacker t
 a `OUT.AWB` file. Now all thats left is to simply rename your awb. For bgms dokkan uses the 
 nomenclature where the bgm file is named `bgm_{id}.awb`. Simply replace the `{id}` substring 
 with a numerical id. Note that AWB_repacker gave us a file with the extension `AWB` 
-dokkan will fail to read this. Ensure that the extension is lowercase`awb`. The id can be any number.
+dokkan will fail to read this. Ensure that the extension is the lowercase`awb`. The id can be any number.
 Then simply place it in the bgm folder of the assets.
 
 # Conclusion
