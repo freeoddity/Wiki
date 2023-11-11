@@ -22,7 +22,7 @@ lets begin
 ----
 ### Tools 
 
-- [**Decrypted Databases**](https://drive.google.com/drive/folders/19c3Lh1kNg7zuBAmg_I_dDZ0KobjasdIj?usp=sharing) (I will try to keep these updated on time)
+- [**Decrypted Databases**](https://dokkanentropy.com/modding/jp.db) (I will try to keep these updated on time)
 
 SQLite3 database editor (Optional but recommended for beginners)
 
