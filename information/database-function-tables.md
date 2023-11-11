@@ -7,6 +7,9 @@ nav_order: 5
 
 [**Be sure to check out his new Dokkan Wiki**](https://dokkan.wiki/)
 
+**WIP**
+This page is a work in progress.
+
 #### Causality Types
 `skill_causalities` table
 
@@ -47,7 +50,7 @@ nav_order: 5
 | 31 | isCombinationAttack | Activates if there are three enemy attacks |  |  |  |
 | 32 | isChangeEnergyBallColor | Checks if there is a ki of a certain type on the board | Ki Type |  |  |
 | 33 | isBetweenHpRate | Checks if card HP percent is between two numbers | HP Percent Lower | HP Percent Higher |  |
-| 34 | isOverTeamCategoryNum | Check if category card is present | 0 for deck; 1 for enemy | Category ID | Unknown |
+| 34 | isOverTeamCategoryNum | Check if category card is present | 0 for deck; 1 for enemy | Category ID | Amount of cards |
 | 35 | hasAllElementBitpatternCards | Checks if deck has all types of an element bitset | Element Bitset |  |  |
 | 36 | isOverHpRateAndElapsedTurn | HP is above percent, battle has past turn number | HP Percent | Turn |  |
 | 37 | isUnderHpRateAndElapsedTurn | HP is below percent, battle has past turn number | HP Percent | Turn |  |
@@ -55,20 +58,20 @@ nav_order: 5
 | 39 | isTargetElementTypeBitPattern | Check if enemy element matches element bitset | Element Bitset |  |  |
 | 40 | isSpecialAttack | Activates if card has used a special attack |  |  |  |
 | 41 | isOverTeamUniqueCardNum | Activates if deck has card with name | Unknown | Card Unique Info ID | Unknown |
-| 42 | isEnergyBallGetNum | Activates if card gets more then specified Ki amount | Unknown | Ki Amount |  |
+| 42 | isEnergyBallGetNum | Activates if card gets more then specified Ki amount | Energy Ball Bitset | Ki Amount |  |
 | 43 | isDodgeSuccess | Activates if card has evaded an attack | Unknown | Unknown | Unknown |
-| 44 | isCountUp | Unknown | Unknown | Unknown | Unknown |
+| 44 | isCountUp | Unknown | 1=Performed Super Attack,2=Has Attacked,3=Receieves Damage,4=Guard Actived,5=Evade| Amount of actions | Unknown |
 | 45 | isContainsCardByCategoryAndUniqueInfo | Activates if card is in target, category and unique info relations | Target (team, turn, enemy...) | Category (id, not sub target) | card\_unique\_info\_set\_relations |
 | 46 | isContainsSpecifiedElemenets | Activates if card is in specified element type bitset| Unknown | Unknown | Unknown |
 | 47 | isExecutedRevivalSkill | Activates if card has executed a revival skill | | | |
-| 48 | isAttackedByEnemyWhichTakeSpecialDamage | Special Bitset| | | |
-| 49 | isAttackedBySpecialCategory|  | Unknown | Unknown | Unknown |
+| 48 | isAttackedByEnemyWhichTakeSpecialDamage | special_categories.raw_attribute | | | |
+| 49 | isAttackedBySpecialCategory| Activates if attacked by a specified special category super|special_categories.raw_attribute | Unknown | Unknown |
 | 50 | hasPlayedPassiveSkillEffect| | Unknown | Unknown | Unknown |
 | 51 | isUnderTurnCountFromApperance|  | Unknown | Unknown | Unknown |
 | 52 | chargeCount|  | Unknown | Unknown | Unknown |
 | 53 | inStandbyMode|  | Unknown | Unknown | Unknown |
 | 54 | isPartyExecutedRevivalSkill| Activates if card in your party has executed a revival skill | | | |
-| 55 | isOverTurnCountFromApperance | Activates if card is x turns after first apperance| turn count | Unknown | Unknown |
+| 55 | isOverTurnCountFromApperance | Activates if card is x turns from first apperance| turn count | Unknown | Unknown |
 | 56 | isNormalAttack | Activates if attack recieved is a normal attack | Unknown | Unknown | Unknown |
 | 57 | isInSpecifiedDokkanField | Activates if card is in a specified dokkan field | dokkan_field.id| Unknown | Unknown |
 | 58 | isInDokkanField | Activates if card is in a dokkan field| Unknown | Unknown | Unknown |
@@ -176,8 +179,8 @@ Applies to all skills tables & `support_items`
 | 64 | Change Element Type Energy Ball Proportional Atk                                                                          | Element Value (0-4)                        | ATK Boost Value (%)               | Element Value (0-4)                                                                                                                                                 |
 | 65 | Change Element Type Energy Ball Proportional Def                                                                          | Element Value (0-4)                        | DEF Boost Value (%)               | Element Value (0-4)                                                                                                                                                 |
 | 66 | Change Element Type Energy Ball Proportional Atk Def                                                                      | Element Value (0-4)                        | ATK & DEF Boost Value (%)         | Element Value (0-4)                                                                                                                                                 |
-| 67 | Change Energy Ball Color Bitpattern                                                                                       | Insert 31                                  | Insert 32                         |                                                                                                                                                                     |
-| 68 | Change Energy Ball Proportional Bitpattern                                                                                | Insert 32                                  | Insert 2                          | HP Value                                                                                                                                                            |
+| 67 | Change Energy Ball Color Bitpattern                                                                                       | Energy Ball Bitset                         | Energy Ball Bitset                |                                                                                                                                                                     |
+| 68 | Change Energy Ball Proportional Bitpattern                                                                                | Energy Ball Bitset                         | 1 = ATK, 2= HP, 3 = DEF, 4 = Crit, 5 =Evasion, 6=Damage Reduction                  | Value                                                                                                              |
 | 69 | Change Energy Ball Color Specify Random                                                                                   | Changes All orbs into (Element ID)         | Insert 1                          | Insert 1                                                                                                                                                            |
 | 70 | Change Energy Ball Color Specify Random Without Obstacles                                                                 |                                            |                                   |                                                                                                                                                                     |
 | 71 | Change Hp Range Atk                                                                                                       | ATK Boost At MIN HP (%)                    | ATK Boost At MAX HP (%)           | Always 1100                                                                                                                                                         |
@@ -190,7 +193,7 @@ Applies to all skills tables & `support_items`
 | 78 | Guard Against All Attacks                                                                                                 | Leave all 3 eff values at 0                | Use probability for chance        | Always use Target Private, Unless You Want All Allies To Be Affected                                                                                                |
 | 79 | Metamorphic Transformation (Full Rotation Transformation eg. Rage, Giant Ape, Metal Cooler Core, etc.) | Transform Card Id| Links to battle_params param_no for Set #1 | Links to battle_params param_no for Set #2 (Conventionally 1 Number Above The ID Of Set #1 eg. Set#1 ID is 601, Set#2 ID Would Usually Be 602)                                                          |
 | 80 | Change Counter Attack                                                                                                     | Damage Reduction(%)(Optional)              | Counter Multiplier                | Lua Script # From Folder [lua] > [ab_script] > [attack_counter] > cXXXX.lua (the number you put is whatever is in XXXX, excluding the first 2 or 3 zeroes before the number) |
-| 81 | Change Extra Attack                                                                                                       |                                            | Probability Attack                | Probability Super Attack                                                                                                                                            |
+| 81 | Change Extra Attack                                                                                                       |                                            | Probability Second Attack         | Probability of attack being a Super Attack                                                                                                                          |
 | 82 | Change Element Type Hp Atk Def                                                                                            |                                            |                                   |                                                                                                                                                                     |
 | 83 | Change Element Type Energy Bitpattern                                                                                     |                                            |                                   |                                                                                                                                                                     |
 | 84 | Change Suicide Attack                                                                                                     |                                            |                                   |                                                                                                                                                                     |
@@ -205,7 +208,7 @@ Applies to all skills tables & `support_items`
 | 93 | Change Element Type Bitpattern Hp                                                                                         |                                            |                                   |                                                                                                                                                                     |
 | 94 | Change Invalidate Stun                                                                                                    |                                            |                                   |                                                                                                                                                                     |
 | 95 | Change Dodge Counter Attack                                                                                               | Links to battle_params param_no            | Counter Multiplier                | Lua Script #                                                                                                                                                        |
-| 96 | Change Energy Ball Additional Point                                                                                       | Insert 63                                  | Ki Value                          |                                                                                                                                                                     |
+| 96 | Change Energy Ball Additional Point                                                                                       | Energy Ball Bitset                         | Ki Value                          |                                                                                                                                                                     |
 | 97 | Change Absorb Special                                                                                                     | Recover HP %?                              | Special Category Raw Attribute    | Animation id [lua] > [ab_script] > [ab_sys] > as(nullification id).lua                                                                                              |
 | 98 | Change Incremental Param                                                                                                  | Increase ATK/DEF/Ki Value                  | Maximum ATK/DEF/Ki Value          | 0 = Atk, 1 = Def, 2 = Critical Chance, 3 = Dodge, 4 = Damage Reduction, 5 = Ki Gain                                                                                 |
 | 99 | Change Invalidate Status Down                                                                                             |                                            |                                   |                                                                                                                                                                     |
@@ -219,7 +222,7 @@ Applies to all skills tables & `support_items`
 | 107| Change Condition Stackable Delay                                                                                          | Delay turn count                           | 0                                 | 0                                                                                                                                                                   |
 | 108| Add Potential Skill Variable Parameter                                                                                    | Unknown                                    | Unknown                           | Unknown                                                                                                                                                             |
 | 109| Revival Skill                                                                                                             | HP% to heal                                | effect_pack Row                   | BGM ID                                                                                                                                                              |
-| 110| Remove Ability Efficacy Info And Inactive Ability Status                                                                  | Insert 2                                   | skill id                          | 0                                                                                                                                                                   |
+| 110| Remove Ability Efficacy Info And Inactive Ability Status                                                                  | Skill Category Type (2 or 15?)             | Skill Type (if 2 -> skill id?)    | 0                                                                                                                                                                   |
 | 111| Change Condition Attack Break                                                                                             | 0 (use probability for chance)             | 0                                 | 0                                                                                                                                                                   |
 | 112| Change Invalidate Attack Break                                                                                            |                                            |                                   |                                                                                                                                                                     |
 | 113| Threshold Damage                                                                                                          |                                            |                                   |                                                                                                                                                                     |
@@ -227,8 +230,10 @@ Applies to all skills tables & `support_items`
 | 116| Charge Start                                                                                                              |                                            |                                   |                                                                                                                                                                     |
 | 117| End Transformation                                                                                                        |                                            |                                   |                                                                                                                                                                     |
 | 118| Add Special Atk Rate By Charge Count                                                                                      |                                            |                                   |                                                                                                                                                                     |
-| 119| Counter Attack Behaviour                                                                                                  |                                            |                                   |                                                                                                                                                                     |
-| 120| Increased Receved Damage                                                                                                  |                                            |                                   |                                                                                                                                                                     |
+| 119| Counter Attack Behaviour                                                                                                  |                                            |                                   | Unknown                                                                                                                                                             |
+| 120| Counter Attack                                                                                                            | Same as eff 89                             | Same as eff 89                    | Same as eff 89                                                                                                                                                      |
+| 121| Unknown                                                                                                                   |                                            |                                   |                                                                                                                                                                     |
+| 122| Increased Receved Damage                                                                                                  | Received Damage Value                      |                                   |                                                                                                                                                                     |
 
 
 <br /><br />
@@ -255,6 +260,7 @@ Applies to all skills tables & `support_items`
 | 13          	| Party Extreme Class               |
 | 14          	| Enemy Super Class                 |
 | 15          	| Enemy Extreme Class               |
+| 16          	| Party All (self excluded)         |
 
 
 
@@ -292,6 +298,13 @@ Applies to all skills tables & `support_items`
 |      9      | End Round           |ef|
 |      10     | Unknown             |ef|
 |      11     | End of Puzzle Phase |ef|
+|      12     | Start of Puzzle Phase |ef|
+|      13     | Unknown |ef|
+|      14     | After delivering a final blow |ef|
+|      15     | Acquired Energy Ball |ef|
+|      16     | Unknown |ef|
+|      17     | Unknown |ef|
+|      18     | Dokkan Field |ef|
 
 
 
@@ -343,7 +356,7 @@ Applies to all skills tables & `support_items`
 |  INT          |  4         |
 |  STR          |  8         |
 |  PHY          |  16        |
-|  Unknown      |  32        |
+|  Rainbow      |  32        |
 |  Unknown      |  64        |
 |  Unknown      |  128       |
 |  Unknown      |  256       |
