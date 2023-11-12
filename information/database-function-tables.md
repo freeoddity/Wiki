@@ -8,6 +8,7 @@ nav_order: 5
 [**Be sure to check out his new Dokkan Wiki**](https://dokkan.wiki/)
 
 **WIP**
+
 This page is a work in progress.
 
 #### Causality Types
@@ -50,7 +51,7 @@ This page is a work in progress.
 | 31 | isCombinationAttack | Activates if there are three enemy attacks |  |  |  |
 | 32 | isChangeEnergyBallColor | Checks if there is a ki of a certain type on the board | Ki Type |  |  |
 | 33 | isBetweenHpRate | Checks if card HP percent is between two numbers | HP Percent Lower | HP Percent Higher |  |
-| 34 | isOverTeamCategoryNum | Check if category card is present | 0 for deck; 1 for enemy | Category ID | Amount of cards |
+| 34 | isOverTeamCategoryNum | Check if category card is present | 0 for deck; 1 for enemy; 2 for ally attacking in | Category ID | Amount of cards |
 | 35 | hasAllElementBitpatternCards | Checks if deck has all types of an element bitset | Element Bitset |  |  |
 | 36 | isOverHpRateAndElapsedTurn | HP is above percent, battle has past turn number | HP Percent | Turn |  |
 | 37 | isUnderHpRateAndElapsedTurn | HP is below percent, battle has past turn number | HP Percent | Turn |  |
@@ -60,7 +61,7 @@ This page is a work in progress.
 | 41 | isOverTeamUniqueCardNum | Activates if deck has card with name | Unknown | Card Unique Info ID | Unknown |
 | 42 | isEnergyBallGetNum | Activates if card gets more then specified Ki amount | Energy Ball Bitset | Ki Amount |  |
 | 43 | isDodgeSuccess | Activates if card has evaded an attack | Unknown | Unknown | Unknown |
-| 44 | isCountUp | Unknown | 1=Performed Super Attack,2=Has Attacked,3=Receieves Damage,4=Guard Actived,5=Evade| Amount of actions | Unknown |
+| 44 | isCountUp | Activates if x amount of actions have occured | 1=Performed Super Attack,2=Has Attacked,3=Receives Damage,4=Guard Actived,5=Evade| Amount of actions | Unknown |
 | 45 | isContainsCardByCategoryAndUniqueInfo | Activates if card is in target, category and unique info relations | Target (team, turn, enemy...) | Category (id, not sub target) | card\_unique\_info\_set\_relations |
 | 46 | isContainsSpecifiedElemenets | Activates if card is in specified element type bitset| Unknown | Unknown | Unknown |
 | 47 | isExecutedRevivalSkill | Activates if card has executed a revival skill | | | |
@@ -226,9 +227,9 @@ Applies to all skills tables & `support_items`
 | 111| Change Condition Attack Break                                                                                             | 0 (use probability for chance)             | 0                                 | 0                                                                                                                                                                   |
 | 112| Change Invalidate Attack Break                                                                                            |                                            |                                   |                                                                                                                                                                     |
 | 113| Threshold Damage                                                                                                          |                                            |                                   |                                                                                                                                                                     |
-| 115| Update Standby Mode                                                                                                       |                                            |                                   |                                                                                                                                                                     |
+| 115| Update Standby Mode                                                                                                       |0                                           |0                                  |0                                                                                                                                                                     |
 | 116| Charge Start                                                                                                              |                                            |                                   |                                                                                                                                                                     |
-| 117| End Transformation                                                                                                        |                                            |                                   |                                                                                                                                                                     |
+| 117| End Transformation                                                                                                        |0                                           |0                                  |0                                                                                                                                                                    |
 | 118| Add Special Atk Rate By Charge Count                                                                                      |                                            |                                   |                                                                                                                                                                     |
 | 119| Counter Attack Behaviour                                                                                                  |                                            |                                   | Unknown                                                                                                                                                             |
 | 120| Counter Attack                                                                                                            | Same as eff 80                             | Same as eff 80                    | Same as eff 80                                                                                                                                                      |
