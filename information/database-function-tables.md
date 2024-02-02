@@ -251,7 +251,7 @@ are technically useable (however some do not work without further hooks)
 through this hook. The enemy efficacy offset is 1000. 
 
 For example if you are trying to make a enemy who guards on sot 
-use enemy efficacy type 1076. 1076 - 1000 = 76.
+use enemy efficacy type 1078. 1078 - 1000 = 78.
 
 | Enemy Efficacy Type 	| Player Efficacy Type                     	|
 |:-------------:|---------------------------------	|
