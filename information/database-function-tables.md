@@ -51,7 +51,7 @@ This page is a work in progress.
 | 31 | isCombinationAttack | Activates if there are three enemy attacks |  |  |  |
 | 32 | isChangeEnergyBallColor | Checks if there is a ki of a certain type on the board | Ki Type |  |  |
 | 33 | isBetweenHpRate | Checks if card HP percent is between two numbers | HP Percent Lower | HP Percent Higher |  |
-| 34 | isOverTeamCategoryNum | Check if category card is present | 0 for deck; 1 for enemy; 2 for ally attacking in | Category ID | Amount of cards |
+| 34 | isOverTeamCategoryNum | Check if category card is present | 0 for deck; 1 for enemy; 2 for ally attacking in turn | Category ID | Amount of cards |
 | 35 | hasAllElementBitpatternCards | Checks if deck has all types of an element bitset | Element Bitset |  |  |
 | 36 | isOverHpRateAndElapsedTurn | HP is above percent, battle has past turn number | HP Percent | Turn |  |
 | 37 | isUnderHpRateAndElapsedTurn | HP is below percent, battle has past turn number | HP Percent | Turn |  |
@@ -63,7 +63,7 @@ This page is a work in progress.
 | 43 | isDodgeSuccess | Activates if card has evaded an attack | Unknown | Unknown | Unknown |
 | 44 | isCountUp | Activates if x amount of actions have occured | 1=Performed Super Attack,2=Has Attacked,3=Receives Damage,4=Guard Actived,5=Evade| Amount of actions | Unknown |
 | 45 | isContainsCardByCategoryAndUniqueInfo | Activates if card is in target, category and unique info relations | Target (team, turn, enemy...) | Category (id, not sub target) | card\_unique\_info\_set\_relations |
-| 46 | isContainsSpecifiedElemenets | Activates if card is in specified element type bitset| Unknown | Unknown | Unknown |
+| 46 | isContainsSpecifiedElemenets | Activates if card is in specified element type bitset| 0 for deck; 1 for enemy; 2 for ally attacking in turn | Type Bitset | amount of cards |
 | 47 | isExecutedRevivalSkill | Activates if card has executed a revival skill | | | |
 | 48 | isAttackedByEnemyWhichTakeSpecialDamage | special_categories.raw_attribute | | | |
 | 49 | isAttackedBySpecialCategory| Activates if attacked by a specified special category super|special_categories.raw_attribute | Unknown | Unknown |
@@ -79,6 +79,7 @@ This page is a work in progress.
 | 59 | isSameAwakeningElementType |Activates if a card in a class| Super Class = 1 Extreme Class = 2 | Unknown | Unknown |
 | 60 | isInSubTargetTypeSet | Activates if card is in a sub target type set| SubTargetTypeSet id | Unknown | Unknown |
 | 61 | isReceivedAttackDuringTurn | Activates if card has recieved attack during turn| Unknown | Unknown | Unknown |
+| 62 | isAttackerElementTypeBitPattern | | Unknown | Unknown | Unknown |  
 
 <br />
 
@@ -223,11 +224,11 @@ Applies to all skills tables & `support_items`
 | 107| Change Condition Stackable Delay                                                                                          | Delay turn count                           | 0                                 | 0                                                                                                                                                                   |
 | 108| Add Potential Skill Variable Parameter                                                                                    | Unknown                                    | Unknown                           | Unknown                                                                                                                                                             |
 | 109| Revival Skill                                                                                                             | HP% to heal                                | effect_pack Row                   | BGM ID                                                                                                                                                              |
-| 110| Remove Ability Efficacy Info And Inactive Ability Status                                                                  | Skill Category Type (2 or 15?)             | Skill Type (if 2 -> skill id?)    | 0                                                                                                                                                                   |
+| 110| Remove Ability Efficacy Info And Inactive Ability Status                                                                  | 2= Passive, 10= Enemy Skill, 15 = Finish Skill, 18=Enemy Round Skill | Skill id                                                                                        | 0=Player, 1= Enemy                                                                                                                                                                   |
 | 111| Change Condition Attack Break                                                                                             | 0 (use probability for chance)             | 0                                 | 0                                                                                                                                                                   |
 | 112| Change Invalidate Attack Break                                                                                            |                                            |                                   |                                                                                                                                                                     |
 | 113| Threshold Damage                                                                                                          |                                            |                                   |                                                                                                                                                                     |
-| 115| Update Standby Mode                                                                                                       |0                                           |0                                  |0                                                                                                                                                                     |
+| 115| Update Standby Mode                                                                                                       |0                                           |0                                  |0                                                                                                                                                                    |
 | 116| Charge Start                                                                                                              |                                            |                                   |                                                                                                                                                                     |
 | 117| End Transformation                                                                                                        |0                                           |0                                  |0                                                                                                                                                                    |
 | 118| Add Special Atk Rate By Charge Count                                                                                      |                                            |                                   |                                                                                                                                                                     |
@@ -235,9 +236,47 @@ Applies to all skills tables & `support_items`
 | 120| Counter Attack                                                                                                            | Same as eff 80                             | Same as eff 80                    | Same as eff 80                                                                                                                                                      |
 | 121| Unknown                                                                                                                   |                                            |                                   |                                                                                                                                                                     |
 | 122| Increased Receved Damage                                                                                                  | Received Damage Value                      |                                   |                                                                                                                                                                     |
+| 123| Target Focus                                                                                                              |Leave all 3 eff values at 0                 | Use probability for chance        | Always use Target Private
+
+<br /><br />
+
+#### Enemy Efficacy Table
+
+The following table are the enemy efficacies mapped 
+to player efficacies by the game's base hash table.
+
+Entropy has hooked the conversion function that converts 
+the enemy efficacy to a player efficacy. All player efficacies
+are technically useable (however some do not work without further hooks) 
+through this hook. The enemy efficacy offset is 1000. 
+
+For example if you are trying to make a enemy who guards on sot 
+use enemy efficacy type 1076. 1076 - 1000 = 76.
+
+| Enemy Efficacy Type 	| Player Efficacy Type                     	|
+|:-------------:|---------------------------------	|
+| 4           	| 67                            	|
+| 5           	| 75                            	|
+| 6           	| 77                      	        |
+| 8           	| 91                           	    |
+| 9           	| 92                       	        |
+| 10           	| 94                 	            |
+| 11           	| 48                 	            |
+| 12           	| 97               	                |
+| 13           	| 99                  	            |
+| 14           	| 100 	                            |
+| 18          	| 112                   	        | 
+| 19          	| 5               	                |
+| 20          	| 113                               |
+| 21          	| 119                               |
+| 22          	| 110                               |
+| 23          	| 3                                 |
+| 24          	| 13                                |
+
 
 
 <br /><br />
+
 
 #### Target Types
 
