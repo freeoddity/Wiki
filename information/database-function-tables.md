@@ -79,7 +79,8 @@ This page is a work in progress.
 | 59 | isSameAwakeningElementType |Activates if a card in a class| Super Class = 1 Extreme Class = 2 | Unknown | Unknown |
 | 60 | isInSubTargetTypeSet | Activates if card is in a sub target type set| SubTargetTypeSet id | Unknown | Unknown |
 | 61 | isReceivedAttackDuringTurn | Activates if card has recieved attack during turn| Unknown | Unknown | Unknown |
-| 62 | isAttackerElementTypeBitPattern | | Unknown | Unknown | Unknown |  
+| 62 | isAttackerElementTypeBitPattern | | Unknown | Unknown | Unknown |
+| 63 | isElapsedTurnPerRound| | Unknown | Unknown | Unknown |  
 
 <br />
 
@@ -236,7 +237,11 @@ Applies to all skills tables & `support_items`
 | 120| Counter Attack                                                                                                            | Same as eff 80                             | Same as eff 80                    | Same as eff 80                                                                                                                                                      |
 | 121| Unknown                                                                                                                   |                                            |                                   |                                                                                                                                                                     |
 | 122| Increased Receved Damage                                                                                                  | Received Damage Value                      |                                   |                                                                                                                                                                     |
-| 123| Target Focus                                                                                                              |Leave all 3 eff values at 0                 | Use probability for chance        | Always use Target Private
+| 123| Target Focus                                                                                                              |Leave all 3 eff values at 0                 | Use probability for chance        | Always use Target Private                                                                                                                                           |
+| 124| IncrementalCritialProbabilityForEnemy                                                                                     | Unknown                                    | Unknown                           | Unknown                                                                                                                                                             |
+| 125| Hp Damage                                                                                                                 | Unknown                                    | Unknown                           | Unknown                                                                                                                                                             |
+| 126| Refelct Damage                                                                                                            | Unknown                                    | Unknown                           | Unknown                                                                                                                                                             |
+| 127| Set Plug In On Energy Ball With Bitpattern                                                                                | Unknown                                    | Unknown                           | Unknown                                                                                                                                                             |
 
 <br /><br />
 
@@ -247,8 +252,8 @@ to player efficacies by the game's base hash table.
 
 Entropy has hooked the conversion function that converts 
 the enemy efficacy to a player efficacy. All player efficacies
-are technically useable (however some do not work without further hooks) 
-through this hook. The enemy efficacy offset is 1000. 
+are technically useable through this hook, however some do not work without further hooks. 
+The enemy efficacy offset is 1000. 
 
 For example if you are trying to make a enemy who guards on sot 
 use enemy efficacy type 1078. 1078 - 1000 = 78.
@@ -272,6 +277,13 @@ use enemy efficacy type 1078. 1078 - 1000 = 78.
 | 22          	| 110                               |
 | 23          	| 3                                 |
 | 24          	| 13                                |
+| 25            | 98                                |
+| 26            | 90                                |
+| 27            | 124                               |
+| 28            | 125                               | 
+| 29            | 126                               |
+| 30            | 127                               |
+
 
 
 
