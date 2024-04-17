@@ -238,7 +238,7 @@ Applies to all skills tables & `support_items`
 | 121| Unknown                                                                                                                   |                                            |                                   |                                                                                                                                                                     |
 | 122| Increased Receved Damage                                                                                                  | Received Damage Value                      |                                   |                                                                                                                                                                     |
 | 123| Target Focus                                                                                                              |Leave all 3 eff values at 0                 | Use probability for chance        | Always use Target Private                                                                                                                                           |
-| 124| IncrementalCritialProbabilityForEnemy                                                                                     | Unknown                                    | Unknown                           | Unknown                                                                                                                                                             |
+| 124| Incremental Critial Probability For Enemy                                                                                     | Unknown                                    | Unknown                           | Unknown                                                                                                                                                             |
 | 125| Hp Damage                                                                                                                 | Unknown                                    | Unknown                           | Unknown                                                                                                                                                             |
 | 126| Refelct Damage                                                                                                            | Unknown                                    | Unknown                           | Unknown                                                                                                                                                             |
 | 127| Set Plug In On Energy Ball With Bitpattern                                                                                | Unknown                                    | Unknown                           | Unknown                                                                                                                                                             |
@@ -348,14 +348,14 @@ use enemy efficacy type 1078. 1078 - 1000 = 78.
 |      7      | After Player Hit    |ef|
 |      8      | Battle Result Phase |ef|
 |      9      | End Round           |ef|
-|      10     | Unknown             |ef|
+|      10     | Start Turn             |ef|
 |      11     | End of Puzzle Phase |ef|
 |      12     | Start of Puzzle Phase |ef|
 |      13     | Unknown |ef|
 |      14     | After delivering a final blow |ef|
 |      15     | Acquired Energy Ball |ef|
 |      16     | Unknown |ef|
-|      17     | Unknown |ef|
+|      17     | Dokkan Field Efficacies |ef |
 |      18     | Dokkan Field |ef|
 
 
