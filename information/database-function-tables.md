@@ -18,11 +18,11 @@ Causalities are described in the skill `causality_conditions` columns
 or the `compiled_causality_conditions` columns
 
 causality_conditions follow the json `{"source":object,"compiled":object}`
-you can use logic in your causalities such as 
-`&` AND
-`|` OR
-`not` Negate
-an example:
+you can use logic in your causalities such as  
+`&` AND  
+`|` OR  
+`not` Negate  
+an example:  
 
 `{"source":"(1&2)|not3","compiled":["|",["&",1,2],["not",3]]}`
 
