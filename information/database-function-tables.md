@@ -11,13 +11,13 @@ nav_order: 5
 
 This page is a work in progress.
 
-#### Causality Types
-`skill_causalities` table
+
+#### Causality Breakdown 
 
 Causalities are described in the skill `causality_conditions` columns
 or the `compiled_causality_conditions` columns
 
-causality_conditions follow the json `{"source":object,"compiled":object}`
+causality_conditions follow the json `{"source":string,"compiled":object}`
 you can use logic in your causalities such as  
 `&` AND  
 `|` OR  
@@ -26,9 +26,9 @@ an example:
 
 `{"source":"(1&2)|not3","compiled":["|",["&",1,2],["not",3]]}`
 
-This basically means the skill will activate if the the conditions defined by 
-the skill causality with id 1 is met **AND** the condition defined by 
-the skill causality with id 2 is met **OR** the conditions defined by 
+This basically means the skill will activate if the the conditions defined by  
+the skill causality with id 1 is met **AND** the condition defined by  
+the skill causality with id 2 is met **OR** the conditions defined by  
 the skill causality with id 3 is **NOT** met.
 
 `compiled_causality_conditions` is exactly what it says it is a compiled json object
@@ -48,6 +48,10 @@ This essentially translates to `not causality type 53 with cau_val1=0 and type 5
 
 Essentially you're compiling your causality to provide the context in the json rather than through database ids
 
+
+#### Causality Types
+
+`skill_causalities` table
 
 | Causality ID | Name | Description | cau_val1 | cau_val2 | cau_val3 |
 |:------------:|-------------------------------|--------------------------------------------------------|------------------------------------|---------------------|----------|
@@ -162,6 +166,46 @@ Applies to all skills tables & `support_items`
 
 <br /><br />
 
+#### Skill Types
+
+Integer mapping to a Specific Skill
+
+| Id 	| Skill Type        	|
+|:-------------:|--------------------	|
+| 1           	| Active          	|
+| 2           	| Passive         	|
+| 3           	| Leader  	|
+| 4           	| Link 	|
+| 5           	| Super         	|
+| 6             | Unknown |
+| 7             | Support Item | 
+| 8             | Unknown | 
+| 9             | Unknown | 
+| 10            | Enemy Skill |
+| 11            | Potential Skill (Hidden Potential) |
+| 12            | Support Memory | 
+| 13            | Unknown | 
+| 14            | Standby Skill | 
+| 15            | Finish Skill | 
+| 16            | Dokkan Field |
+| 17            | Dokkan Field Efficacy| 
+| 18            | Enemy Round Skill |
+
+<br /><br />
+
+
+#### Skill Category Type
+ 
+Integer used to determine how a skill was activated
+
+| Id 	| Skill Category Type        	|
+|:-------------:|--------------------	|
+| 0           	| Player          	|
+| 1           	| Enemy         	|
+| 6             | Unknown              | 
+
+<br /><br />
+
 #### Efficacy Types
 
 Unless specified it seems appropriate to use `[eff_value1,eff_value2,eff_value3]` in the `effcacy_values` columns of the database when needed. 
@@ -260,7 +304,7 @@ Unless specified it seems appropriate to use `[eff_value1,eff_value2,eff_value3]
 | 107| Change Condition Stackable Delay                                                                                          | Delay turn count                           | 0                                 | 0                                                                                                                                                                   |                 |
 | 108| Add Potential Skill Variable Parameter (nullptr)                                                                                    | Unknown                                    | Unknown                           | Unknown                                                                                                                                                   |                 |
 | 109| Revival Skill                                                                                                             | HP% to heal                                | effect_pack Row                   | BGM ID                                                                                                                                                              |`{"priority":int}`|
-| 110| Remove Ability Efficacy Info And Inactive Ability Status                                                                  | 2= Passive, 10= Enemy Skill, 15 = Finish Skill, 18=Enemy Round Skill | Skill id                                                                                        | 0=Player, 1= Enemy                                                          |                 |
+| 110| Remove Ability Efficacy Info And Inactive Ability Status                                                                  | [Skill Types Table](#skill-types)          | Skill id                          | [Skill Category Types Table](#skill-category-type)                                                          |  A little clarification on this efficacy. It essentially deactivates a skill. This is how dr before attacking works. The Dr skill is activated at sot then removed when you attack.                                                                       |
 | 111| Change Condition Attack Break                                                                                             | 0 (use probability for chance)             | 0                                 | 0                                                                                                                                                                   |                 |
 | 112| Change Invalidate Attack Break                                                                                            |                                            |                                   |                                                                                                                                                                     |                 |     
 | 113| Threshold Damage                                                                                                          |                                            |                                   |                                                                                                                                                                     |                 |
