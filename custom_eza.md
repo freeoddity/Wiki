@@ -5,8 +5,7 @@ nav_order: 5
 ---
 
 
----
-If you want to learn more and interact with a community of modders join the [**dokkan modding community**](https://discord.gg/dokkanmods)
+
 
 
 
@@ -22,7 +21,7 @@ lets begin
 ----
 ### Tools 
 
-- [**Decrypted Databases**](https://dokkanentropy.com/modding/jp.db) (I will try to keep these updated on time)
+- [**Decrypted Databases**](https://prem.dokkanentropy.com/modding/jp.db) (I will try to keep these updated on time)
 
 SQLite3 database editor (Optional but recommended for beginners)
 
